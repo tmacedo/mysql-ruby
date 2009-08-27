@@ -559,7 +559,7 @@ static VALUE info(VALUE obj)
 /*	insert_id()	*/
 static VALUE insert_id(VALUE obj)
 {
-    return INT2NUM(mysql_insert_id(GetHandler(obj)));
+    return LL2NUM(mysql_insert_id(GetHandler(obj)));
 }
 
 /*	kill(pid)	*/
