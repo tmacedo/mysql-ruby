@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: mysql
 version: !ruby/object:Gem::Version 
-  version: 2.8.1.1
+  version: 2.8.1.2
 platform: ruby
 authors: 
 - TOMITA Masahiro

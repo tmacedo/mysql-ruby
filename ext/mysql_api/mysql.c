@@ -710,6 +710,18 @@ static VALUE store_result(VALUE obj)
     return mysqlres2obj(res);
 }
 
+/* read_query_result() */
+static VALUE read_query_result(VALUE obj)
+{
+    MYSQL* m = GetHandler(obj);
+    if (GetMysqlStruct(obj)->connection == Qfalse) {
+        rb_raise(eMysql, "query: not connected");
+    }
+   if (mysql_read_query_result(m) != 0)
+   mysql_raise(m);
+   return obj;
+}
+
 /*	thread_id()	*/
 static VALUE thread_id(VALUE obj)
 {
@@ -764,6 +776,19 @@ static VALUE query(VALUE obj, VALUE sql)
     if (mysql_field_count(m) == 0)
 	return Qnil;
     return store_result(obj);
+}
+
+/* send_query(sql) */
+static VALUE send_query(VALUE obj, VALUE sql)
+{
+    MYSQL* m = GetHandler(obj);
+    Check_Type(sql, T_STRING);
+    if (GetMysqlStruct(obj)->connection == Qfalse) {
+        rb_raise(eMysql, "query: not connected");
+    }
+   if (mysql_send_query(m, RSTRING(sql)->ptr, RSTRING(sql)->len) != 0)
+   mysql_raise(m);
+   return Qnil;
 }
 
 #if MYSQL_VERSION_ID >= 40100
@@ -1971,12 +1996,14 @@ void Init_mysql_api(void)
 #endif
     rb_define_method(cMysql, "query", query, 1);
     rb_define_method(cMysql, "real_query", query, 1);
+    rb_define_method(cMysql, "send_query", send_query, 1);    
     rb_define_method(cMysql, "refresh", refresh, 1);
     rb_define_method(cMysql, "reload", reload, 0);
     rb_define_method(cMysql, "select_db", select_db, 1);
     rb_define_method(cMysql, "shutdown", my_shutdown, -1);
     rb_define_method(cMysql, "stat", my_stat, 0);
     rb_define_method(cMysql, "store_result", store_result, 0);
+    rb_define_method(cMysql, "read_query_result", read_query_result, 0);
     rb_define_method(cMysql, "thread_id", thread_id, 0);
     rb_define_method(cMysql, "use_result", use_result, 0);
 #if MYSQL_VERSION_ID >= 40100
