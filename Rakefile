@@ -5,8 +5,8 @@ Echoe.new("fauna-mysql") do |p|
   p.author = "Evan Weaver"
   p.project = "fauna"
   p.summary = "The MySQL API module for Ruby, with Twitter fixes."
-  p.url = "http://blog.evanweaver.com/files/doc/fauna/mysql/"
-  p.docs_host = "blog.evanweaver.com:~/www/bax/public/files/doc/"
+  p.url = "http://github.com/evan/mysql/"
+  p.docs_host = "evan.github.com/fauna/"
 end
 
 #--
