@@ -44,13 +44,11 @@ executables: []
 extensions: 
 - ext/mysql_api/extconf.rb
 extra_rdoc_files: 
-- History.txt
 - Manifest.txt
 - README.txt
 files: 
 - COPYING
 - COPYING.ja
-- History.txt
 - Manifest.txt
 - README.txt
 - Rakefile

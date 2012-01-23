@@ -1,6 +1,5 @@
 COPYING
 COPYING.ja
-History.txt
 Manifest.txt
 README.txt
 Rakefile

@@ -19,5 +19,5 @@ Running the binary version of this gem against a different version of MySQL
 shared library <tt>libMySQL.dll</tt> will generate segmentation faults and
 terminate your application.
 
-Please use the exact same MAJOR.MINOR version of MySQL, see History.txt for
+Please use the exact same MAJOR.MINOR version of MySQL, see CHANGELOG for
 specific version of MySQL used to build the binaries.
